@@ -29,10 +29,11 @@ def generate(header, output):
 		varnames = proc[1].split(',')
 		for j, varname in enumerate(varnames):
 			varname = varname.split()[-1].split('*')[-1]
-			content += '${' + str(j+1) + ':' + varname + '}'
-			if j < len(varnames) - 1: content += ','
+			if not (varname == 'void') :
+				content += '${' + str(j+1) + ':' + varname + '}'
+				if j < len(varnames) - 1: content += ','
 
-		content += ');"}'
+		content += ')"}'
 		if i < len(procs) - 1: content += ','
 		content += '\n'
 
